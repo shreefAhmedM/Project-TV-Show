@@ -1,3 +1,47 @@
-#root {
-  color: red;
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: rgb(235, 234, 231);
+  font-family: sans-serif
 }
+
+#root {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  padding-top: 20px;
+}
+
+.card {
+  background-color: white;
+  box-shadow: #00000029 0px 3px 6px, #0000003b 0px 3px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding-top: 20px;
+}
+
+.card__title {
+  box-shadow: #00000029 0px 3px 6px, #0807073b 0px 3px 6px;
+  padding: 5px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+  
+}
+
+.card__img img {
+  width: 300px;
+}
+
+.card__body {
+  text-align: center;
+  padding:0 10px;
+}
+
