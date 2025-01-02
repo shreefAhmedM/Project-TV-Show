@@ -37,7 +37,8 @@ body {
 }
 
 .card__img img {
-  width: 300px;
+  max-width:300px;
+  height: auto;
 }
 
 .card__body {
