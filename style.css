@@ -3,6 +3,7 @@ body {
   color: #333;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 #root {
