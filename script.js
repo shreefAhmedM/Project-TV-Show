@@ -8,8 +8,21 @@ function setup() {
     searchTerm: "",
   };
   return {
-    fetchAllEpisodes() {
-      state.episodes = getAllEpisodes();
+    async fetchAllEpisodes() {
+      const rootElem = document.getElementById("root");
+      rootElem.textContent = "Loading episodes, please waite..";
+
+      try {
+        const response = await fetch(
+          "https://api.tvmaze.com/shows/82/episodes"
+        );
+        if (!response.ok) throw new Error("Episode data not available");
+
+        state.episodes = await response.json();
+        this.makePageForEpisodes();
+      } catch (error) {
+        rootElem.textContent = `Error loading episodes: ${error.message}`;
+      }
     },
     makePageForEpisodes() {
       const rootElem = document.getElementById("root");
