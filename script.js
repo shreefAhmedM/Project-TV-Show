@@ -72,6 +72,16 @@ function setup() {
       const body = document.body;
       body.insertBefore(searchDiv, body.firstChild);
     },
+    createShowSelect() {
+      const showSelectDiv = document.createElement("div");
+      showSelectDiv.className = "showSelect";
+
+      const selectElem = document.createElement("select");
+      selectElem.name = "showSelector";
+      selectElem.id = "showSelector";
+
+      const defaultOptionElem = document.createElement("option");
+    },
   };
 }
 
