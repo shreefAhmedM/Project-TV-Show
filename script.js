@@ -27,8 +27,10 @@ function setup() {
     makePageForEpisodes() {
       const rootElem = document.getElementById("root");
       rootElem.textContent = "";
-      const filteredEpisodes = state.episodes.filter((episode) =>
-        episode.name.toLowerCase().includes(state.searchTerm.toLowerCase())
+      const filteredEpisodes = state.episodes.filter(
+        ({ name, summary }) =>
+          name.toLowerCase().includes(state.searchTerm) ||
+          summary.toLowerCase().includes(state.searchTerm)
       );
       filteredEpisodes.forEach(({ name, season, number, image, summary }) => {
         const epiDiv = document.createElement("div");
