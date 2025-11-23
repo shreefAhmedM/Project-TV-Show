@@ -61,7 +61,7 @@ function setup() {
       searchInput.placeholder = "Search Term";
 
       searchInput.addEventListener("keyup", () => {
-        state.searchTerm = searchInput.value;
+        state.searchTerm = searchInput.value.trim().toLowerCase();
         this.makePageForEpisodes();
       });
 
