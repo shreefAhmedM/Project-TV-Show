@@ -30,24 +30,22 @@ function setup() {
       const filteredEpisodes = state.episodes.filter((episode) =>
         episode.name.toLowerCase().includes(state.searchTerm.toLowerCase())
       );
-      filteredEpisodes.forEach((episode) => {
+      filteredEpisodes.forEach(({ name, season, number, image, summary }) => {
         const epiDiv = document.createElement("div");
         epiDiv.className = "epiCard";
-        const episodeCode = `S${zeroPad(episode.season)}E${zeroPad(
-          episode.number
-        )}`;
+        const episodeCode = `S${zeroPad(season)}E${zeroPad(number)}`;
 
         const titleElem = document.createElement("h2");
-        titleElem.textContent = `${episode.name} (${episodeCode})`;
+        titleElem.textContent = `${name} (${episodeCode})`;
         epiDiv.appendChild(titleElem);
-        if (episode.image && episode.image.medium) {
+        if (image && image.medium) {
           const imageElem = document.createElement("img");
-          imageElem.src = episode.image.medium;
-          imageElem.alt = `${episode.name} image`;
+          imageElem.src = image.medium;
+          imageElem.alt = `${name} image`;
           epiDiv.appendChild(imageElem);
 
           const summaryElem = document.createElement("p");
-          summaryElem.innerHTML = episode.summary;
+          summaryElem.innerHTML = summary;
           epiDiv.appendChild(summaryElem);
           rootElem.appendChild(epiDiv);
         }
