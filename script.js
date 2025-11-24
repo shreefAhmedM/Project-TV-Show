@@ -11,7 +11,7 @@ function setup() {
   return {
     async fetchAllShows() {
       const rootElem = document.getElementById("root");
-      rootElem.textContent = "Loading shows, please wait...";
+      rootElem.textContent = "Shows are available, please choose a show...";
       try {
         const response = await fetch("https://api.tvmaze.com/shows");
         if (!response.ok) {
@@ -25,13 +25,13 @@ function setup() {
         rootElem.textContent = `Error loading shows: ${error.message}`;
       }
     },
-    async fetchAllEpisodes() {
+    async fetchAllEpisodes(showId) {
       const rootElem = document.getElementById("root");
       rootElem.textContent = "Loading episodes, please wait..";
 
       try {
         const response = await fetch(
-          "https://api.tvmaze.com/shows/82/episodes"
+          `https://api.tvmaze.com/shows/${showId}/episodes`
         );
         if (!response.ok) throw new Error("Episode data not available");
 
@@ -103,9 +103,18 @@ function setup() {
       selectElem.id = "showSelector";
 
       const defaultOptionElem = document.createElement("option");
+      defaultOptionElem.value = "";
       defaultOptionElem.textContent = "Select Show";
 
       selectElem.appendChild(defaultOptionElem);
+
+      selectElem.addEventListener("change", async () => {
+        const selectedShowId = selectElem.value;
+        if (!selectElem.value) return;
+
+        await this.fetchAllEpisodes(selectedShowId);
+        this.makePageForEpisodes();
+      });
 
       const header = document.querySelector("header");
       header.appendChild(selectElem);
@@ -114,7 +123,7 @@ function setup() {
       const showSelectElem = document.getElementById("showSelector");
       state.shows.forEach(({ id, name }) => {
         const showOpt = document.createElement("option");
-        showOpt.id = id;
+        showOpt.value = id;
         showOpt.textContent = name;
         showSelectElem.appendChild(showOpt);
       });
@@ -126,10 +135,8 @@ const tvShow = setup();
 
 window.onload = async () => {
   await tvShow.fetchAllShows();
-  tvShow.fetchAllEpisodes();
   tvShow.createHeader();
   tvShow.createShowSelect();
   tvShow.populateShowSelect();
   tvShow.searchField();
-  tvShow.makePageForEpisodes();
 };
