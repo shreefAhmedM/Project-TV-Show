@@ -4,13 +4,28 @@ function zeroPad(num) {
 
 function setup() {
   const state = {
+    shows: [],
     episodes: [],
     searchTerm: "",
   };
   return {
+    async fetchAllShows() {
+      const rootElem = document.getElementById("root");
+      rootElem.textContent = "Loading shows, please wait...";
+      try {
+        const response = await fetch("https://api.tvmaze.com/shows");
+        if (!response.ok) {
+          throw new Error("Shows data not available");
+        }
+        state.shows = await response.json();
+        console.log(state.shows);
+      } catch (error) {
+        rootElem.textContent = `Error loading shows: ${error.message}`;
+      }
+    },
     async fetchAllEpisodes() {
       const rootElem = document.getElementById("root");
-      rootElem.textContent = "Loading episodes, please waite..";
+      rootElem.textContent = "Loading episodes, please wait..";
 
       try {
         const response = await fetch(
@@ -99,6 +114,7 @@ function setup() {
 const tvShow = setup();
 
 window.onload = () => {
+  tvShow.fetchAllShows();
   tvShow.fetchAllEpisodes();
   tvShow.createHeader();
   tvShow.createShowSelect();
