@@ -17,8 +17,10 @@ function setup() {
         if (!response.ok) {
           throw new Error("Shows data not available");
         }
-        state.shows = await response.json();
-        console.log(state.shows);
+        const shows = await response.json();
+        state.shows = shows.sort((a, b) =>
+          a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        );
       } catch (error) {
         rootElem.textContent = `Error loading shows: ${error.message}`;
       }
@@ -108,16 +110,26 @@ function setup() {
       const header = document.querySelector("header");
       header.appendChild(selectElem);
     },
+    populateShowSelect() {
+      const showSelectElem = document.getElementById("showSelector");
+      state.shows.forEach(({ id, name }) => {
+        const showOpt = document.createElement("option");
+        showOpt.id = id;
+        showOpt.textContent = name;
+        showSelectElem.appendChild(showOpt);
+      });
+    },
   };
 }
 
 const tvShow = setup();
 
-window.onload = () => {
-  tvShow.fetchAllShows();
+window.onload = async () => {
+  await tvShow.fetchAllShows();
   tvShow.fetchAllEpisodes();
   tvShow.createHeader();
   tvShow.createShowSelect();
+  tvShow.populateShowSelect();
   tvShow.searchField();
   tvShow.makePageForEpisodes();
 };
