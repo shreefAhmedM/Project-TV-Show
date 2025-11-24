@@ -81,6 +81,12 @@ function setup() {
       selectElem.id = "showSelector";
 
       const defaultOptionElem = document.createElement("option");
+      defaultOptionElem.textContent = "Select Show";
+
+      selectElem.appendChild(defaultOptionElem);
+
+      const body = document.body;
+      body.insertBefore(selectElem, body.firstChild);
     },
   };
 }
@@ -91,4 +97,5 @@ window.onload = () => {
   tvShow.fetchAllEpisodes();
   tvShow.makePageForEpisodes();
   tvShow.searchField();
+  tvShow.createShowSelect();
 };
