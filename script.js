@@ -62,12 +62,11 @@ function setup() {
           imageElem.src = image.medium;
           imageElem.alt = `${name} image`;
           epiDiv.appendChild(imageElem);
-
-          const summaryElem = document.createElement("p");
-          summaryElem.innerHTML = summary;
-          epiDiv.appendChild(summaryElem);
-          rootElem.appendChild(epiDiv);
         }
+        const summaryElem = document.createElement("p");
+        summaryElem.innerHTML = summary;
+        epiDiv.appendChild(summaryElem);
+        rootElem.appendChild(epiDiv);
       });
     },
     createHeader() {
@@ -111,6 +110,9 @@ function setup() {
       selectElem.addEventListener("change", async () => {
         const selectedShowId = selectElem.value;
         if (!selectElem.value) return;
+
+        document.getElementById("searchInput").value = "";
+        state.searchTerm = "";
 
         await this.fetchAllEpisodes(selectedShowId);
         this.makePageForEpisodes();
