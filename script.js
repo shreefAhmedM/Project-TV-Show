@@ -53,6 +53,11 @@ function setup() {
         }
       });
     },
+    createHeader() {
+      const headerElem = document.createElement("header");
+      const rootElem = document.getElementById("root");
+      document.body.insertBefore(headerElem, rootElem);
+    },
     searchField() {
       const searchDiv = document.createElement("div");
       searchDiv.className = "searchField";
@@ -69,8 +74,8 @@ function setup() {
 
       searchDiv.appendChild(searchInput);
 
-      const body = document.body;
-      body.insertBefore(searchDiv, body.firstChild);
+      const header = document.querySelector("header");
+      header.appendChild(searchDiv);
     },
     createShowSelect() {
       const showSelectDiv = document.createElement("div");
@@ -85,8 +90,8 @@ function setup() {
 
       selectElem.appendChild(defaultOptionElem);
 
-      const body = document.body;
-      body.insertBefore(selectElem, body.firstChild);
+      const header = document.querySelector("header");
+      header.appendChild(selectElem);
     },
   };
 }
@@ -95,7 +100,8 @@ const tvShow = setup();
 
 window.onload = () => {
   tvShow.fetchAllEpisodes();
-  tvShow.makePageForEpisodes();
-  tvShow.searchField();
+  tvShow.createHeader();
   tvShow.createShowSelect();
+  tvShow.searchField();
+  tvShow.makePageForEpisodes();
 };
