@@ -1,10 +1,12 @@
 function zeroPad(num) {
   return num.toString().padStart(2, "0");
 }
+
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
+
 function makePageForEpisodes(episodes) {
   const rootElem = document.getElementById("root");
   rootElem.textContent = "";
