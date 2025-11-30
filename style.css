@@ -7,6 +7,12 @@ body {
   flex-direction: column;
 }
 
+header {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
 #root {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
