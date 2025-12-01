@@ -1,53 +1,60 @@
 body {
-  background-color: #f5f5f7;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  background-color: #f6f6f6;
+  margin-left: 22rem;
+  margin-right: 27rem;
+  font-family: Arial, sans-serif;
 }
-
 header {
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  width: 90%;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 0;
+  gap: 20px;
 }
-
+#search-area,
+#episode-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#show-search-input,
+#search-term-input {
+  border: none;
+  padding: 3px 8px;
+  width: 200px;
+  font-size: 1rem;
+  font-weight: bold;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+}
 #root {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 70%;
-  gap: 40px;
-  margin: 0 auto;
+  gap: 20px;
 }
-
-.epiCard {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  height: 600px;
+.show-card,
+.episode-card {
+  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-top: 30px;
-  padding: 0 20px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
 }
-
-.epiCard img {
-  border-radius: 15px;
-  height: 180px;
-  object-fit: cover;
-  padding: 20px;
+.show-card:hover {
+  box-shadow: 0 0 8px 2px #568af0;
+  cursor: pointer;
 }
-
-.epiCard h2 {
-  border: 2px solid;
-  border-radius: 15px;
-  padding: 20px;
+.show-card img,
+.episode-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
-
-.epiCard p {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  color: #4c4949;
-  margin: 0 16px 20px 16px;
-  padding: 20px 0;
+h2 {
+  margin: 0.5em 0 0.25em 0;
+}
+#root h1 {
+  text-align: center;
 }
