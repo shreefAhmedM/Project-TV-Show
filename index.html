@@ -2,15 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>TV Show Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | shreef shreefAhmedM</title>
     <link href="style.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <div id="root"></div>
-
-    <!-- Loads YOUR javascript code -->
+    <header>
+      <button id="back-to-shows" style="display: none">Back to Shows</button>
+      <div id="search-area">
+        <span id="filteringFor">Filtering for</span>
+        <input
+          type="text"
+          id="show-search-input"
+          placeholder="Search shows..."
+        />
+      </div>
+      <div id="episode-controls" style="display: none">
+        <select id="season-selector"></select>
+        <input
+          type="text"
+          id="search-term-input"
+          placeholder="Search episodes..."
+        />
+      </div>
+      <span id="numbers-of-episodes"></span>
+      <div id="foundNumShowsHide">
+        found <span id="foundNumShows"></span> shows
+      </div>
+    </header>
+    <main id="root"></main>
     <script src="script.js"></script>
   </body>
 </html>
